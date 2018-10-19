@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="CSS/lm-tags.css">
+        <link rel="stylesheet" type="text/css" href="CSS/section.css">
+        <link rel="stylesheet" type="text/css" href="CSS/lm-plate.css">
+        <link rel="stylesheet" type="text/css" href="CSS/lm-forms.css">
+        <link rel="stylesheet" type="text/css" href="CSS/lm-plate-mobile.css"> 
+    </head>
+    <body>
+        <div>
+            <div id="loginForm">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+                    <input type="text" name="user" value placeholder="Username" maxlength="255" size="25">
+                    <br>
+                    <input type="password" name="pass" value placeholder="Password" maxlength="255" size="25">
+                    <br>
+                    <div id="buttonWrapper">
+                        <input type="submit" name="submit" value="Login">
+                    </div>
+                </form>
+                <div><?php echo $error;?></div>
+            </div>
+        </div>
+    </body>
+</html>

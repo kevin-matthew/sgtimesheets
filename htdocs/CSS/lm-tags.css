@@ -1,0 +1,153 @@
+html
+{
+	-ms-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+}
+a
+{
+	text-decoration:none;
+}
+a:link, a:visited
+{
+    text-decoration: none;
+}
+
+a:hover, a:active
+{
+    color: #7064A0;
+}
+
+body
+{
+
+}
+
+h1
+{
+	font-size:2.5em;
+}
+
+h2
+{
+	font-size:2.1em;
+}
+
+h3
+{
+	font-size:1.7em;
+}
+
+h4
+{
+	font-size:1.4em;
+}
+
+h5
+{
+	font-size:1.2em;
+}
+
+h6
+{
+	font-size:1.2em;
+}
+h1, h2, h3, h4, h5, h6
+{
+	margin:8px 0;
+	font-family: 'Cormorant SC', serif;
+}
+p
+{
+	margin:0.8em auto;
+}
+
+code
+{
+	display:block;
+	font-family:monospace;
+	white-space:pre;
+	overflow-x:auto;
+}
+
+ul,ol
+{
+	margin: 0.2em 0;
+}
+
+neg,bad,error
+{
+	display:block;
+	color: red;
+}
+
+pos,good,success
+{
+	display:block;
+	color:green;
+}
+
+usrin
+{
+	display:block;
+}
+
+fieldset > usrin
+{
+	display:inline-block;
+}
+
+fieldset
+{
+	display:block;
+}
+
+usrin label, usrin label, usrin label, usrin label
+{
+	display:block;
+}
+
+table
+{
+	border-collapse: collapse;
+	width:100%;
+}
+
+table tbody .tableColumnLabels td:nth-child(odd){
+	background-color: #4CAF50;
+}
+
+table tbody .tableColumnLabels td:nth-child(even){
+	background-color: #7CE371;
+}
+
+table tbody tr td{
+	background-color: #C4F3BF;
+}
+
+table tbody th
+{
+	background-color:#4CAF50;
+	font-weight:bold;
+	color: white;
+	padding: 5px;
+}
+table tbody tr
+{
+
+}
+table tbody tr:hover
+{
+	background-color:#7CE371;
+}
+table tbody tr td
+{
+	border: 1px solid white;
+	padding:5px;
+}
+img
+{
+	display:block;
+	max-width:100%;
+	
+}
