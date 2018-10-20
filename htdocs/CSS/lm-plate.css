@@ -2,7 +2,17 @@
  * We relize that our standards cannot be the best ones out there.
  * but we are confident that it's damn well near close.
  */
- 
+/*-------------------------------*/
+/*Color Pallete*/
+/*Blue Background: #0066cc*/
+/*Green Column Labels: #4d9900*/
+/*Text Color: white and black*/
+/*Add Timesheet Button: #ff751a; */
+/*Change Password Button: #c5a224; */
+/*Name Label: #80aaff*/
+/*Password Change: #c5a224; */
+/* */
+/*-------------------------------*/
 body
 {
 	/*box-shadow: 0px 0px 50px black;*/
@@ -12,6 +22,7 @@ body
 	font-size:18px;
 	text-rendering: optimizelegibility;
 	line-height: 1.25;
+	background-color: #0066cc;
 }
 
 header
@@ -27,8 +38,9 @@ header label
 {
 	padding: 10px 15px;
 	margin-top: 4%;
-	background-color: #999;
+	background-color: #80aaff;
 	float:left;
+	border-radius: 4px;
 }
 
 header input:last-child
@@ -52,6 +64,48 @@ header a
 	color:#333;
 }
 
+/*Modal CSS*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*---------------*/
+
+/*Login Form CSS*/
+
 #loginForm{
 	display: flex;
 	position: absolute;
@@ -66,15 +120,7 @@ header a
 	text-align: center;
 }
 
-.nameLabel{
-	display: inline-block;
-	width: 10%;
-	margin-left: 0;
-	margin-right: auto;
-	text-align: center;
-	padding: 10px 10px;
-	background-color: #8965E4;
-}
+/*---------------*/
 
 section
 {	
@@ -84,63 +130,6 @@ section
 	align-items:flex-start;
 }
 
-section.banner {
-    overflow: hidden;
-    height: 300px;
-    background-color: #0D8A00;
-    align-items: stretch;
-}
-
-#title
-{
-	padding-left: 15px;
-}
-
-#logo
-{
-	height:100px;
-	display:inline-block;
-	margin-right: 20px;
-}
-
-#logo,#title
-{
-	vertical-align:middle;
-	display:inline-block;
-}
-
-
-
-#slideshow
-{
-	width:1200px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0px 0px 25px 1px #1b043e;
-}
-
-#slideshow h2
-{
-	position:absolute;
-	background-color:rgba(85,214,72,.75);
-	color:#eee;
-	width:100%;
-	margin-top:30;
-	padding:0.2em 1em;
-}
-
-#slideshow div {
-    position: absolute;
-    width:100%;
-    display:block;
-    
-}
-#slideshow div img
-{
-	display:block;
-	width:100%;
-	
-}
 
 main, aside
 {
@@ -183,15 +172,6 @@ aside
 {
 	width: 80%;
 	margin: auto;
-}
-
-#homepage
-{
-	width: 100%;
-	height: 800px;
-	display: block;
-	background-image: url("/img/Golf Images/backgroundImage.jpg");
-	background-repeat: no-repeat;
 }
 
 main

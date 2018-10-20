@@ -4,6 +4,7 @@ Forms
 /* Buttons */
 button, .laz-btn, input[type=submit], input[type=button]
 {
+	border-radius: 4px;
 	padding: 10px 15px;
 	display: inline-block;
 	cursor: pointer;
@@ -68,3 +69,23 @@ input[type=search]
 	width:100%;
 }
 
+/* Specifics */
+#addTimeSheet{
+	background-color: #ff751a;
+}
+
+#addTimeSheet:hover{
+	transition-property: background-color;
+    transition-duration: 0.2s;
+    background: #55AAff;
+}
+
+#changePassword{
+	background-color: #c5a224;
+}
+
+#changePassword:hover{
+	transition-property: background-color;
+    transition-duration: 0.2s;
+    background: #55AAff;
+}

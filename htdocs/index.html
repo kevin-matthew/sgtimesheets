@@ -3,6 +3,7 @@
 <head>
 	<title>Index</title>
 	<meta content="text/html; charset=utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/lm-tags.css">
     <link rel="stylesheet" type="text/css" href="CSS/section.css">
     <link rel="stylesheet" type="text/css" href="CSS/lm-plate.css">
@@ -13,11 +14,21 @@
 	<section class="content" style="display: block;">
 		<header>
 			<label>John Doe</label>
-			<input type="submit" name="addTimeSheet" value="Add Time Sheet">
-			<input type="submit" name="changePassword" value="Change Password">	
+			<input type="submit" name="addTimeSheet" value="Add Time Sheet" id="addTimeSheet">
+			<div id="addTimeSheetModel" class="modal">
+			  	<div class="modal-content">
+    				<span class="close">&times;</span>
+    				<p>Some text in the Modal..</p>
+  				</div>
+			</div>
+			<script type="text/javascript">
+				
+				
+			</script>
+			<input type="submit" name="changePassword" value="Change Password" id="changePassword">	
 		</header>
 
-		<table style="width: 90%; margin-left: auto; margin-right: auto;">
+		<table>
 			<tbody>
 				<tr class="tableColumnLabels">
 					<td>Start Date</td>
