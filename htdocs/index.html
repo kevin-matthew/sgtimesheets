@@ -18,23 +18,20 @@
 			<div id="addTimeSheetModal" class="modal">
 			  	<div class="modal-content">
     				<span class="close">&times;</span>
-    				<div class="modalLabelWrapper">
-	    				<label>From Date</label>
-	    				<label>End Date</label>
-	    				<label>Total Hours</label>
-	    				<label>Client 1 (Default)</label>
-    				</div>
-    				<div class="modalInputWrapper">
-	    				<input type="text" name="fromDate" value placeholder="From Date" maxlength="10" size="10">
-	    				<input type="text" name="endDate" value placeholder="End Date" maxlength="10" size="10">
-	    				<input type="text" name="totalHours" value placeholder="Total Hours" maxlength="10" size="10">
-	    				<input type="text" name="client" value placeholder="Client" maxlength="20" size="10">
-	    			</div>
-	    			<div class="modalOptionsWrapper">
-	    				<input type="file" name="fileUpload" value="Upload">
-	    				<input type="submit" name="submitTimeSheet" value="Submit">
-	    				<input type="reset" name="reset" value="Reset">
-	    			</div>
+    				<form action="" method="">
+    					<div class="modalInputWrapper">
+		    				<input type="text" name="fromDate" value placeholder="From Date" maxlength="10" size="10">
+		    				<input type="text" name="endDate" value placeholder="End Date" maxlength="10" size="10">
+		    				<input type="text" name="totalHours" value placeholder="Total Hours" maxlength="10" size="10">
+		    				<input type="text" name="client" value placeholder="Client" maxlength="20" size="10">
+	    				</div>
+		    			<div class="modalOptionsWrapper">
+		    				<input type="file" name="fileUpload" value="Upload">
+		    				<input type="submit" name="submitTimeSheet" value="Submit">
+		    				<input type="reset" name="reset" value="Reset">
+		    			</div>
+    				</form>
+    				
   				</div>
 			</div>
 			<script type="text/javascript">

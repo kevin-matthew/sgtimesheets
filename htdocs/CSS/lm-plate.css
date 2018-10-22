@@ -80,6 +80,7 @@ header a
 
 /* Modal Content/Box */
 .modal-content {
+	display: block;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -87,18 +88,13 @@ header a
     width: 55%; /* Could be more or less, depending on screen size */
 }
 
-.modalLabelWrapper{
+ .modalInputWrapper, .modalOptionsWrapper{
 	display: flex;
 	width: 100%;
-}
-
-.modalLabelWrapper label{
-	margin: 0px auto;
+	margin: 0 auto;
 }
 
 .modalInputWrapper{
-	display: flex;
-	width: 100%;
 	margin-top: 10px;
 }
 
@@ -107,11 +103,10 @@ header a
 }
 
 .modalOptionsWrapper {
-	display: flex;
 	margin-top: 10px;
 }
 
-.modal-content .modalOptionsWrapper input[type=submit]{
+.modal .modal-content .modalOptionsWrapper input{
 	margin: 0 auto;
 }
 
