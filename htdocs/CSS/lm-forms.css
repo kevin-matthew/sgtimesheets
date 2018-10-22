@@ -2,7 +2,7 @@
 Forms
 ********************************************************/
 /* Buttons */
-button, .laz-btn, input[type=submit], input[type=button]
+button, .laz-btn, input[type=submit], input[type=button], input[type=reset]
 {
 	border-radius: 4px;
 	padding: 10px 15px;
@@ -88,4 +88,10 @@ input[type=search]
 	transition-property: background-color;
     transition-duration: 0.2s;
     background: #55AAff;
+}
+
+.modalOptionsWrapper input[type=file]
+{
+	margin: 0 auto;
+	width: 25%;
 }

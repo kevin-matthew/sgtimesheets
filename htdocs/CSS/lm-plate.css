@@ -84,7 +84,35 @@ header a
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 55%; /* Could be more or less, depending on screen size */
+}
+
+.modalLabelWrapper{
+	display: flex;
+	width: 100%;
+}
+
+.modalLabelWrapper label{
+	margin: 0px auto;
+}
+
+.modalInputWrapper{
+	display: flex;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.modal-content .modalInputWrapper input[type=text]{
+	margin: 0 auto;
+}
+
+.modalOptionsWrapper {
+	display: flex;
+	margin-top: 10px;
+}
+
+.modal-content .modalOptionsWrapper input[type=submit]{
+	margin: 0 auto;
 }
 
 /* The Close Button */
