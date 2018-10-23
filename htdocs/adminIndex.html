@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Time Sheets Repository</title>
+	<title>Admin Index</title>
 	<meta content="text/html; charset=utf-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/lm-tags.css">
@@ -13,7 +13,7 @@
 <body>
 	<section class="content" style="display: block;">
 		<header>
-			<label>Time Sheets Repository</label>
+			<label>Admin Homepage</label>
 			<input type="submit" name="search" value="Search" id="search">
 			<div id="searchModal" class="modal">
 			  	<div class="modal-content">
@@ -53,16 +53,24 @@
     				}
 				}
 			</script>
+
+			<a href="userManagement.html">
+				<button>User Management</button>
+			</a>
+			<a href="clientManagement.html">
+				<button>Client Management</button>
+			</a>
+
 		</header>
 
 		<table>
 			<tbody>
 				<tr class="tableColumnLabels">
 					<td>Employee Name</td>
-					<td>Submitted On</td>
 					<td>Total Hours</td>
 					<td>Start Date</td>
 					<td>End Date</td>
+					<td>Client Name</td>
 					<td>Download</td>
 				</tr>
 				<tr>
