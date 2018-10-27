@@ -1,0 +1,31 @@
+@media only screen and (max-width: 1400px) {
+  table {
+    display: block;
+    overflow: auto; }
+
+  section {
+    display: block;
+    flex-wrap: wrap; }
+
+  header {
+    flex-direction: column; }
+    header #menu {
+      width: 100% !important; }
+      header #menu nav {
+        flex-direction: row !important;
+        flex-wrap: wrap; }
+        header #menu nav a {
+          flex: 1 1 25%; }
+          header #menu nav a:before {
+            display: none; }
+
+  aside, main {
+    width: 100%; }
+
+  fieldset > usrin {
+    display: block; }
+
+  .nonmobile {
+    display: none !important; } }
+
+/*# sourceMappingURL=mobile.css.map */

@@ -1,0 +1,147 @@
+$ellem-green:#009900;
+$ellem-gray:#aaa;
+$ellem-transgreen:rgba(0,153,0,0.6);
+
+@import "tags.scss";
+@import "forms.scss";
+@import "mobile.scss";
+@import "classes.scss";
+@import "ids.scss";
+
+body
+{
+	padding:0;
+	margin:0;
+	background:#fff;
+	color:#444;
+	font-family:'Exo';
+    header
+	{
+		max-width:500px;
+		margin:0 auto;
+		margin-bottom:40px;
+		display:flex;
+		align-items:center;
+		flex-direction:row;
+		align-content:center;
+		justify-content:center;
+		height:150px;
+		border-bottom:2px solid $ellem-green;
+		#brand
+		{
+			display:flex;
+			align-items:center;
+			flex-direction:row;
+			justify-content:space-evenly;
+			padding:0 20px;
+			h1
+			{
+				font-family:'Julius Sans One';
+				letter-spacing:3px;
+				font-size:20px;
+				font-variant:none;
+			}
+		}
+		#menu
+		{
+			nav
+			{
+				display:flex;
+				flex-direction:row;
+				a
+				{	
+					text-align:center;
+					padding:9px;
+					display:block;
+					font-size:1.1em; 			
+				}	
+			}
+		}
+	
+	}
+    section
+    {
+	    display:flex;
+	    justify-content: center;
+		margin-bottom:16px;
+        main
+        {
+            display:block;
+			max-width:700px;
+			margin:0 50px;
+        }
+
+		aside
+		{
+			width:300px;
+		}
+
+		&.listview main
+		{
+			display:flex;
+			justify-content:space-evenly;
+			flex-wrap:wrap;
+			padding:12px;
+			> *
+			{
+				max-width:300px;
+				padding:8px;
+				color:inherit;
+				transition:border .25s;
+				border-bottom:6px solid $ellem-green;
+			}
+			> a:hover
+			{
+				border-bottom:6px solid #aaeeaa;
+			}
+		}
+
+		&.text main
+		{
+			max-width:800px;
+			color:#000;
+			font-size:16px;
+			font-family:serif;
+		}
+        		
+		&.banner
+		{
+			background-size:cover;
+			align-items:center;
+			min-height:400px;
+			padding:16px;
+			box-shadow: 0px 5px 5px #999;
+			main
+			{
+				&:first-child
+				{
+					margin-top:0;
+				}
+				width:90%;
+			}
+		}
+    }
+
+    footer
+	{
+		display:flex;
+		color:#666;
+		min-height:50px;
+		font-size:0.8em;
+		margin-top:100px;
+		align-items:center;
+		justify-content: space-evenly;
+		flex-wrap:wrap;
+		>div
+		{
+			width:350px;
+			list-style:none;
+			padding:0px;
+		}
+		>p
+		{
+			flex:1 1 100%;
+			text-align:center;
+		}
+	}
+}

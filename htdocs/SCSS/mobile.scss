@@ -1,0 +1,53 @@
+@media only screen and (max-width: 1400px)
+{
+	table
+	{
+		display:block;
+		overflow:auto;
+	}
+	
+	section
+	{
+		display:block;
+		flex-wrap:wrap;
+	}
+
+	header
+	{
+		flex-direction: column;
+		#menu
+		{
+		width:100% !important;
+		nav
+		{
+			flex-direction:row !important;
+			flex-wrap:wrap;
+			a
+			{
+				flex:1 1 25%;
+				&:before
+				{
+					display:none;
+				}
+			}
+		}
+		}
+	}
+	
+	aside, main
+	{
+		width:100%;
+	}
+	
+	fieldset > usrin
+	{
+		display:block;
+	}
+
+	.nonmobile
+	{
+		display:none !important;
+	}
+
+	
+}

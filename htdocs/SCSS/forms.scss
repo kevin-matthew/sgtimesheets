@@ -1,0 +1,93 @@
+/* Buttons */
+$ellem-green: #009900;
+
+$inputelements:input,textarea,select;
+body
+{
+	form
+	{
+		margin:0;
+	}
+    button, .laz-btn, input[type=submit], input[type=button]
+    {
+	    padding: 10px 15px;
+	    display: inline-block;
+	    cursor: pointer;
+	    border:none;
+	    font-family:inherit;
+	    font-size:inherit;
+	    text-decoration:none;
+	    text-align:center;
+	    background-color:#AAA;
+        &:hover
+        {
+	        transition-property:background-color;
+	        transition-duration: 0.2s;
+	        background: $ellem-green;
+        }
+        &:disabled
+        {
+             color:#EFEFEF;
+	        background-color: #AAA;
+        }
+    }
+
+    /* text */
+    input:not([type="button"]), input:not([type="submit"]), textarea, select
+    {
+	    font-family:inherit;
+	    font-size:inherit;
+	    padding:7px;
+	    border:1px solid grey;
+		:disabled, [readonly]
+		{
+		    color:#DFDFDF;
+		    background-color: #999;
+		}
+
+    }
+
+    textarea
+    {
+	    width:100%;
+        display:block;
+    }
+
+    input:focus, textarea:focus
+    {
+	    outline:3px solid #55AAff;
+    }
+
+    input[type=file]
+    {
+        display:block;
+	    width:100%;
+    }
+
+    input[type=search]
+    {
+        display:block;
+	    width:100%;
+    }
+
+	.usrin
+	{
+		display:flex;
+		align-items:center;
+		label
+		{
+			text-align:right;
+			display:block;
+			width:150px;
+			padding-right:20px;
+		}
+
+		#{$inputelements}
+		{
+			text-align:left;
+			display:block;
+			max-width:80%;
+		}
+	}
+}
+

@@ -1,0 +1,55 @@
+/* Buttons */
+body {
+  /* text */ }
+  body form {
+    margin: 0; }
+  body button, body .laz-btn, body input[type=submit], body input[type=button] {
+    padding: 10px 15px;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: none;
+    text-align: center;
+    background-color: #AAA; }
+    body button:hover, body .laz-btn:hover, body input[type=submit]:hover, body input[type=button]:hover {
+      transition-property: background-color;
+      transition-duration: 0.2s;
+      background: #009900; }
+    body button:disabled, body .laz-btn:disabled, body input[type=submit]:disabled, body input[type=button]:disabled {
+      color: #EFEFEF;
+      background-color: #AAA; }
+  body input:not([type="button"]), body input:not([type="submit"]), body textarea, body select {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 7px;
+    border: 1px solid grey; }
+    body input:not([type="button"]) :disabled, body input:not([type="button"]) [readonly], body input:not([type="submit"]) :disabled, body input:not([type="submit"]) [readonly], body textarea :disabled, body textarea [readonly], body select :disabled, body select [readonly] {
+      color: #DFDFDF;
+      background-color: #999; }
+  body textarea {
+    width: 100%;
+    display: block; }
+  body input:focus, body textarea:focus {
+    outline: 3px solid #55AAff; }
+  body input[type=file] {
+    display: block;
+    width: 100%; }
+  body input[type=search] {
+    display: block;
+    width: 100%; }
+  body .usrin {
+    display: flex;
+    align-items: center; }
+    body .usrin label {
+      text-align: right;
+      display: block;
+      width: 150px;
+      padding-right: 20px; }
+    body .usrin input, body .usrin textarea, body .usrin select {
+      text-align: left;
+      display: block;
+      max-width: 80%; }
+
+/*# sourceMappingURL=forms.css.map */

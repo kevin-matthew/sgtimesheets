@@ -1,0 +1,10 @@
+$ellem-green:#009900;
+
+.tableColumnLabels {
+    td{
+        color: white;
+        background-color: $ellem-green;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+}
