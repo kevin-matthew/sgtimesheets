@@ -7,4 +7,29 @@ $ellem-green:#009900;
         font-size: 1.5em;
         font-weight: bold;
     }
+    &:hover{
+        background-color: $ellem-green;
+    }
+}
+
+.content {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    table{
+        display: table;
+        
+        tbody{
+        width: 100%;    
+        }
+    }
+}
+
+.nameLabel{
+    float: left;
+    margin-top: 60px;
+    margin-left: 60px;
+    border: 2px solid $ellem-green;
+    padding: 10px;
 }
