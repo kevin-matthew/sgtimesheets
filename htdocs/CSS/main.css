@@ -109,7 +109,7 @@ body {
   /* text */ }
   body form {
     margin: 0; }
-  body button, body .laz-btn, body input[type=submit], body input[type=button] {
+  body button, body .laz-btn, body input[type=submit], body input[type=button], body input[type=reset] {
     padding: 10px 15px;
     display: inline-block;
     cursor: pointer;
@@ -119,11 +119,11 @@ body {
     text-decoration: none;
     text-align: center;
     background-color: #AAA; }
-    body button:hover, body .laz-btn:hover, body input[type=submit]:hover, body input[type=button]:hover {
+    body button:hover, body .laz-btn:hover, body input[type=submit]:hover, body input[type=button]:hover, body input[type=reset]:hover {
       transition-property: background-color;
       transition-duration: 0.2s;
       background: #009900; }
-    body button:disabled, body .laz-btn:disabled, body input[type=submit]:disabled, body input[type=button]:disabled {
+    body button:disabled, body .laz-btn:disabled, body input[type=submit]:disabled, body input[type=button]:disabled, body input[type=reset]:disabled {
       color: #EFEFEF;
       background-color: #AAA; }
   body input:not([type="button"]), body input:not([type="submit"]), body textarea, body select {
@@ -211,6 +211,10 @@ body {
   border: 2px solid #009900;
   padding: 10px; }
 
+.inputLabel {
+  border: 2px solid #009900;
+  padding: 10px; }
+
 body {
   padding: 0;
   margin: 0;
@@ -224,6 +228,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
     align-content: center;
     justify-content: center;
     height: 150px;
