@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="CSS/tags.css">
+        <link rel="stylesheet" type="text/css" href="CSS/classes.css">
+        <link rel="stylesheet" type="text/css" href="CSS/main.css">
+        <link rel="stylesheet" type="text/css" href="CSS/forms.css">
+        <link rel="stylesheet" type="text/css" href="CSS/mobile.css"> 
+    </head>
+    <body>
+            <header>
+                <h1>Add User</h1>
+            </header>
+        
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" style="margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%); display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 1em;">
+                    
+                    <label class="inputLabel">First Name</label>
+                    
+                    <label class="inputLabel">Middle Name</label>
+                    
+                    <label class="inputLabel">Last Name</label>
+                    
+                    <input type="text" name="firstName" value placeholder="John" maxlength="25" size="25" style="margin-bottom: 10px;">
+                    
+                    <input type="text" name="middleName" value placeholder="Jacob" maxlength="25" size="25" style="margin-bottom: 10px;">
+                    
+                    <input type="text" name="lastName" value placeholder="Jingleheimerschmidt" maxlength="25" size="25" style="margin-bottom: 10px;">
+                    
+                    <label class="inputLabel">User Name</label>
+                    
+                    <label class="inputLabel">Temp Password</label>
+                    
+                    <label class="inputLabel">Employee ID</label>
+                    
+                    <input type="text" name="userName" value placeholder="JJingle6969" maxlength="25" size="25" style="margin-bottom: 10px;">
+                    
+                    <input type="text" name="tempPassword" value placeholder="password1234" maxlength="25" size="25" style="margin-bottom: 10px;">
+                    
+                    <input type="text" name="employeeID" value placeholder="42069420" maxlength="25" size="25" style="margin-bottom: 10px;">
+                    
+                    <label class="inputLabel">Email</label>
+                    
+                    <label class="inputLabel">Start Date</label>
+                    
+                    <label class="inputLabel">Client 1</label>
+                    
+                    <input type="text" name="email" value placeholder="Jsmih@ellem.ai" maxlength="25" size="25" style="margin-bottom: 10px;">
+                    
+                    <input type="text" name="startDate" value placeholder="Start Date" maxlength="10" size="10" style="margin-bottom: 10px;">
+                    
+                    <input type="text" name="client" value placeholder="Client 1" maxlength="25" size="10" style="margin-bottom: 10px;">
+                    
+                    <label class="inputLabel">Client 2</label>
+                    <label></label><label></label>
+                    
+                    <input type="text" name="client2" value placeholder="Client 2" maxlength="25" size="10" style="margin-bottom: 10px;">
+                    
+                    <label></label><label></label>
+                    
+                    <button>Activate</button>
+                    
+                    <input type="submit" name="submit" value="Save" style="">
+                    
+                    <input type="reset" name="reset" value="Cancel">
+                </form>
+                <div><?php echo $error;?></div>
+    </body>
+</html>
