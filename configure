@@ -1,0 +1,88 @@
+#!/usr/bin/perl -w
+use strict;
+use warnings;
+use Getopt::Std;
+use File::Glob;
+use Cwd;
+my @m4_in = glob("m4/*.m4");
+my $sitename = 'sgtimesheets.localhost';
+my @sitealias = ();
+my @conf_out;
+foreach(@m4_in)
+{
+	$_ =~ m/m4\/(.*)\.m4/;
+	push @conf_out, $1;
+}
+if(scalar @m4_in != scalar @conf_out)
+{
+	print "Error: in/out mis-match\n";
+	print "in  (".scalar @m4_in."): " . join(', ', @m4_in) . "\n";
+	print "out (".scalar @conf_out."): " . join(', ', @conf_out) . "\n";
+}
+
+print "Welcome to the lmconfig-urator\n";
+my ($arg) = @ARGV;
+my $cwd = cwd();
+if(defined $arg && $arg eq "--clean")
+{
+	print "Cleaning...\n";
+	unlink "config.m4";
+	unlink $_ foreach @conf_out;
+	exit;
+}
+
+if(-e "config.m4")
+{
+	my $t = "";
+	while($t ne "p" && $t ne "n")
+	{
+		print "\n";
+		print "config.m4 already made, would you like to:\n";
+		print " p - re-run your previous configurations, or;\n";
+        print " n - generate a new ones?\n";
+		print "[P/n]?: ";
+		$t = <STDIN>;
+		$t =~ s/\s//g;
+		$t = lc $t;
+		if($t eq "") {$t = "p"};
+	}
+	if($t eq "p")
+	{
+		goto RUNM4;	
+	}
+}
+
+my $file_contents = "changequote([[,]])dnl\n";
+$file_contents .= set_macro("__DOC_ROOT__",     "$cwd/htdocs");
+$file_contents .= set_macro("__PHP_INCLUDE__",     "$cwd:.:/usr/share/php");
+$file_contents .= set_macro("__SITE_ROOT__", "$cwd");
+$file_contents .= set_macro("__SITE_NAME__", $sitename);
+$file_contents .= set_macro("__SITE_ALIAS__", join(' ',@sitealias));
+
+
+sub set_macro
+{
+	my $name = shift;
+	my $value = shift;
+	print "Setting '$name' to '$value'\n";
+	return "define([[$name]], [[$value]])dnl\n";
+}
+
+
+print "\n";
+print "Writing config.m4...\n";
+open(MYFILE, ">config.m4");
+print MYFILE $file_contents;
+close(MYFILE);
+
+
+RUNM4:
+print "Macro configuration complete, running m4...\n";
+
+
+for my $i (0..$#conf_out)
+{
+	print "Generating $conf_out[$i]...\n";
+	system("m4 config.m4 $m4_in[$i] > $conf_out[$i]");	
+}
+print "Complete. You may now run 'make'\n";
