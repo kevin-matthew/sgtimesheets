@@ -14,6 +14,7 @@ function genTableBody($id) {
 		print '<td>' . $row['enddate'] . '</td>';
 		print '<td>' . $row['totalhours'] . '</td>';
 		print '<td>' . $row['filelocation'] . '</td>';
+		print '<td><a href="/editTimeSheet?id='.$row['timesheetid'].'">edit</a>';
 		print '</tr>';
 	}
 }
