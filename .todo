@@ -1,9 +1,18 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
-    <note priority="medium" time="1541278520">
+    <note priority="medium" time="1541278520" done="1543375414">
         Add todo items
     </note>
     <note priority="medium" time="1541278565">
         rename all file names to use snake case
+    </note>
+    <note priority="medium" time="1543375356">
+        kevin: Attachment uploading
+    </note>
+    <note priority="medium" time="1543375375">
+        brett: edit/add timesheet
+    </note>
+    <note priority="medium" time="1543375396">
+        parker edit/add timesheet (frontend)
     </note>
 </todo>
