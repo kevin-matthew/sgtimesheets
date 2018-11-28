@@ -1,25 +1,37 @@
 <?php
+include ('../lib/db.php');
+$db = getDB();
+function genTableBody($id) {
+	global $db;
+	$sql = "SELECT * FROM timesheets WHERE userid=:userid;";
+	$query = $db->prepare($sql);
+	$query->execute(array(':userid' => $id));
+	$result = $query->fetchAll();
+
+	foreach($result as $row) {
+		print '<tr>';
+		print '<td>' . $row['fromdate'] . '</td>';
+		print '<td>' . $row['enddate'] . '</td>';
+		print '<td>' . $row['totalhours'] . '</td>';
+		print '<td>' . $row['filelocation'] . '</td>';
+		print '</tr>';
+	}
+}
+
 include ('../run/header.php');
 ?>
     <section class="content">
 		<table>
-			<tbody>
+			<thead>
 				<tr class="tableColumnLabels">
-					<td>Start Date</td>
-					<td>End Date</td>
-					<td>Total Hours</td>
-					<td>Submitted On</td>
-					<td>Attachment</td>
-					<td>Email</td>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Total Hours</th>
+					<th>Attachment</th>
 				</tr>
-				<tr>
-					<td>User info</td>
-					<td>loaded in</td>
-					<td>from SQL</td>
-					<td>will be</td>
-					<td>generated</td>
-					<td>into HTML here</td>
-				</tr>				
+			</thead>
+			<tbody>
+				<?=genTableBody(1); /* '1' is for temporary testing, replace with actual user's ID */ ?>
 			</tbody>
 		</table>
 	</section>
