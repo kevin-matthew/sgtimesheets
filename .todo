@@ -15,4 +15,10 @@
     <note priority="medium" time="1543375396">
         parker edit/add timesheet (frontend)
     </note>
+    <note priority="medium" time="1543516265">
+        Validate date field to make sure the fromdate isn't after the enddate.
+    </note>
+    <note priority="medium" time="1543516291">
+        Validate the totalhours field to make sure it isn't a negative number.
+    </note>
 </todo>
