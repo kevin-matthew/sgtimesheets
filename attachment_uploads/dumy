@@ -1,0 +1,7 @@
+This is a dumy document.
+
+Without this dumy document git will not upload the empty attachment_uploads folder to the repo.
+
+So I put this dumy in here.
+
+And told git to ignore all files in this folder except for this one.

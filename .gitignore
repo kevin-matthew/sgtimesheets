@@ -1,3 +1,5 @@
 config.m4
 nginx.conf
 *.css.map
+attachment_uploads/*
+!attachment_uploads/dumy
