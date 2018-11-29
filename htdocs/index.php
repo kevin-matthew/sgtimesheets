@@ -14,7 +14,7 @@ function genTableBody($id) {
 		print '<td>' . $row['enddate'] . '</td>';
 		print '<td>' . $row['totalhours'] . '</td>';
 		print '<td>' . $row['filelocation'] . '</td>';
-		print '<td><a href="/editTimeSheet?id='.$row['timesheetid'].'">edit</a>';
+		print '<td><a href="/timeSheet?id='.$row['timesheetid'].'">edit</a>';
 		print '</tr>';
 	}
 }
@@ -22,6 +22,7 @@ function genTableBody($id) {
 include ('../run/header.php');
 ?>
     <section class="content">
+		<a class="button" href="/timeSheet">Add Timesheet</a>
 		<table>
 			<thead>
 				<tr class="tableColumnLabels">
