@@ -1,13 +1,17 @@
 <?php
 if(!empty($_POST['Submit'])) {
 	include ('../lib/timesheets.php');
-	updateTimesheet($_POST);
-	/*
-	  Send to the home page with a success message.
-	 */
+	$err_msg = "";
+	if(updateTimesheet($_POST, $_GET['id'], $err_msg)) {
+		/*
+		Send to the home page with a success message.
+		*/
+		header('Location: /');
+		exit;
+	 }
 }
 	 
-include ('../lib/db.php');
+require_once('../lib/db.php');
 $db = getDB();
 
 $timesheetID = (int)$_GET['id'];
@@ -29,6 +33,12 @@ if((int)$timesheetData['userid'] !== $userID) { // Add condition if the user is 
 
 include ('../run/header.php');
 ?>
+
+<?php if(!empty($err_msg)): ?>
+<section>
+	<error><?=$err_msg; ?></error>
+</section>
+<?php endif; ?>
 
 <section>
 	<form method="post" action="">
