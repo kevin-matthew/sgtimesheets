@@ -4,14 +4,14 @@ $userID = 1; // Change once users are setup
 if(!empty($_POST['Submit'])) {
 	include ('../lib/timesheets.php');
 	$err_msg = "";
-	if(!empty($_GET['id']) && updateTimesheet($_POST, $_GET['id'], $err_msg)) {
+	if(!empty($_GET['id']) && updateTimesheet($_POST, $_FILES['attachment']['name'], $_GET['id'], $err_msg)) {
 		/*
 		Send to the home page with a success message.
 		*/
 		header('Location: /');
 		exit;
 	}
-	elseif(insertTimesheet($_POST, $userID, $err_msg)) {
+	elseif(insertTimesheet($_POST, $_FILES['attachment']['name'], $userID, $err_msg)) {
 		/*
 		Send to the home page with a success message.
 		*/
@@ -51,7 +51,7 @@ include ('../run/header.php');
 <?php endif; ?>
 
 <section>
-	<form method="post" action="">
+	<form method="post" action="" enctype="multipart/form-data">
 		Start Date:
 		<input name="fromdate" type="date" value="<?=$timesheetData['fromdate']; ?>">
 		End Date:
@@ -59,7 +59,7 @@ include ('../run/header.php');
 		Total Hours:
 		<input name="totalhours" type="number" step="0.1" value="<?=$timesheetData['totalhours']; ?>">
 		Attachment:
-		<input name="attachment" type="file">
+		<input type="file" name="attachment">
 		<input type="submit" name="Submit">
 	</form>
 </section>

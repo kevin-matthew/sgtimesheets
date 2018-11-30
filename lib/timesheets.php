@@ -1,5 +1,6 @@
 <?php
 require_once('db.php');
+require_once('attachment.php');
 
 /**
  * Updates a certain timesheet with given post data.
@@ -13,7 +14,7 @@ require_once('db.php');
  *  Pointer to a string variable that will store an error message
  *  if anything fails.
  */
-function updateTimesheet(array $post, int $timesheetid, string &$err_msg) {
+function updateTimesheet(array $post, string $attachmentname, int $timesheetid, string &$err_msg = '') {
 	/*
 	  Check if the time sheet is the user's/the user is an admin
 	 */
@@ -45,14 +46,18 @@ function updateTimesheet(array $post, int $timesheetid, string &$err_msg) {
 	// Force totalhours into a float:
 	$totalhours = (float)$post['totalhours'];
 
+	if(!uploadattachment($attachmentname, $err_msg)) {
+		return false;
+	}
+
 	$db = getDB();
 
 	$updateQuery = $db->prepare("UPDATE timesheets "
-	. "SET fromdate = :fromdate, enddate = :enddate, totalhours = :totalhours "
+	. "SET fromdate = :fromdate, enddate = :enddate, totalhours = :totalhours, filelocation = :attachment "
 	. "WHERE timesheetid = :timesheetid");
 	
 	if(!$updateQuery->execute(array(':fromdate'=>$fromdate, ':enddate'=>$enddate,
-	':totalhours'=>$totalhours, ':timesheetid'=>$timesheetid))) {
+	':totalhours'=>$totalhours, ':timesheetid'=>$timesheetid, ':attachment'=>$attachmentname))) {
 		$err_msg = "Something went wrong with the database, try again later.";
 		return false;
 	}
@@ -72,7 +77,7 @@ function updateTimesheet(array $post, int $timesheetid, string &$err_msg) {
  *  Pointer to a string variable that will store an error message
  *  if anything fails.
  */
-function insertTimesheet(array $post, int $userID, string &$err_msg) {
+function insertTimesheet(array $post, string $attachmentname, int $userID, string &$err_msg = '') {
 	// Validate start date:
 	$date = explode("-", $post['fromdate']);
 	if(count($date) !== 3) {
@@ -99,14 +104,17 @@ function insertTimesheet(array $post, int $userID, string &$err_msg) {
 
 	// Force totalhours into a float:
 	$totalhours = (float)$post['totalhours'];
+
+	if(!uploadattachment($attachmentname, $err_msg)) {
+		return false;
+	}
 	
 	$db = getDB();
 	
 	$insert = $db->prepare("INSERT INTO timesheets (userid, fromdate, enddate, totalhours, filelocation) "
 		."VALUES (?,?,?,?,?)");
 	
-	$filelocation = "fuck"; // CHANGE THIS ONCE ATTACHMENT HANDLING IS DONE!!
-	if(!$insert->execute(array($userID, $fromdate, $enddate, $totalhours, $filelocation))) {
+	if(!$insert->execute(array($userID, $fromdate, $enddate, $totalhours, $attachmentname))) {
 		$err_msg = "Something went wrong with the database, try again later.";
 		return false;
 	}
