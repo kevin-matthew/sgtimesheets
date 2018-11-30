@@ -6,7 +6,7 @@ define('SGTS_ALLOWEDTYPE', array('pdf' => 'application/pdf'
 , 'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 , 'doc'  => 'application/msword'
 , 'bin' => 'application/octet-stream'));
-define('SGTS_UPLOADDEST' , '../attachment_uploads');
+define('SGTS_UPLOADDEST' , $_SERVER['DOCUMENT_ROOT'] . '/../attachment_uploads');
 
 /*
  * This function reads from $_FILES and uploads the first file and returns the path of where the file was stored.
