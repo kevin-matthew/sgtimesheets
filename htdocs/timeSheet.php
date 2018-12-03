@@ -4,14 +4,14 @@ $userID = 1; // Change once users are setup
 if(!empty($_POST['Submit'])) {
 	include ('../lib/timesheets.php');
 	$err_msg = "";
-	if(!empty($_GET['id']) && updateTimesheet($_POST, $_FILES['attachment']['name'], $_GET['id'], $err_msg)) {
+	if(!empty($_GET['id']) && updateTimesheet($_POST, 'attachment', $_GET['id'], $err_msg)) {
 		/*
 		Send to the home page with a success message.
 		*/
 		header('Location: /');
 		exit;
 	}
-	elseif(insertTimesheet($_POST, $_FILES['attachment']['name'], $userID, $err_msg)) {
+	elseif(insertTimesheet($_POST, 'attachment', $userID, $err_msg)) {
 		/*
 		Send to the home page with a success message.
 		*/

@@ -37,7 +37,7 @@ function uploadattachment(string $file_upload_name, string &$err_str = '')
 		$err_str = 'Unknown upload error';
 		return 0;
 	}
-	if($tmpfile['size'] > SG_MAXFILESIZE)
+	if($tmpfile['size'] > SGTS_MAXFILESIZE)
 	{
 		$err_str = 'Filesize too large';
 		return 0;
