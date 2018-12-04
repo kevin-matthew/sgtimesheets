@@ -46,7 +46,7 @@ function updateTimesheet(array $post, string $attachmentname, int $timesheetid, 
 	// Force totalhours into a float:
 	$totalhours = (float)$post['totalhours'];
 
-	if(!uploadattachment($attachmentname, $err_msg)) {
+	if(!$attachmentlocation = uploadattachment($attachmentname, $err_msg)) {
 		return false;
 	}
 
@@ -57,7 +57,7 @@ function updateTimesheet(array $post, string $attachmentname, int $timesheetid, 
 	. "WHERE timesheetid = :timesheetid");
 	
 	if(!$updateQuery->execute(array(':fromdate'=>$fromdate, ':enddate'=>$enddate,
-	':totalhours'=>$totalhours, ':timesheetid'=>$timesheetid, ':attachment'=>$attachmentname))) {
+	':totalhours'=>$totalhours, ':timesheetid'=>$timesheetid, ':attachment'=>$attachmentlocation))) {
 		$err_msg = "Something went wrong with the database, try again later.";
 		return false;
 	}
@@ -105,7 +105,7 @@ function insertTimesheet(array $post, string $attachmentname, int $userID, strin
 	// Force totalhours into a float:
 	$totalhours = (float)$post['totalhours'];
 
-	if(!uploadattachment($attachmentname, $err_msg)) {
+	if(!$attachmentlocation = uploadattachment($attachmentname, $err_msg)) {
 		return false;
 	}
 	
@@ -114,7 +114,7 @@ function insertTimesheet(array $post, string $attachmentname, int $userID, strin
 	$insert = $db->prepare("INSERT INTO timesheets (userid, fromdate, enddate, totalhours, filelocation) "
 		."VALUES (?,?,?,?,?)");
 	
-	if(!$insert->execute(array($userID, $fromdate, $enddate, $totalhours, $attachmentname))) {
+	if(!$insert->execute(array($userID, $fromdate, $enddate, $totalhours, $attachmentlocation))) {
 		$err_msg = "Something went wrong with the database, try again later.";
 		return false;
 	}
