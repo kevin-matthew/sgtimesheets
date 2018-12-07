@@ -1,11 +1,10 @@
 <?php
-require_once 'config.php';
-require_once 'lib/paydb.php';
+require_once 'lib/db.php';
 require_once 'lib/communication.php';
 
 
 session_start();
-$account_error = null;
+$account_error = '';
 
 class account
 {
@@ -15,14 +14,54 @@ class account
 	public $admin = 0;
 	public $reset_password_token;
 	public $reset_password_expiry;
-	public $_enc_data; // see account_encrypt and account_decrypt
 }
 
-define("ACCOUNT_ENC_METHOD",  "aes-256-ctr");
-define("ACCOUNT_ENC_OPTIONS", OPENSSL_RAW_DATA);
-define("ACCOUNT_ENC_HASH",    "sha256");
-// Do not change, we will lose everything.
-define("ACCOUNT_ENC_IVSALT",  "arvba578abajk4a,k44NNIFNEldldldn5%");
+function account_validpost(array $postdata, string &$err_str = '') : bool
+{
+	// username
+	if(!preg_match('/^[a-zA-Z0-9]+$/',@$postdata['username']))
+	{
+		$err_str = "Username must be alphanumaric";
+		return false;
+	}
+
+	// first name
+	if(!preg_match('/^[a-zA-Z]+$/', @$postdata['firstname']))
+	{
+		$err_str = "Invalid firstname";
+		return false;
+	}
+
+	// last name
+	if(!preg_match('/^[a-zA-Z]+$/', @$postdata['lastname']))
+	{
+		$err_str = "Invalid lastname";
+		return false;
+	}
+	
+	// email
+	if(!filter_var(@$postdata['email'], FILTER_VALIDATE_EMAIL))
+	{
+		$err_str="Invalid email format";
+		return false;
+	}
+
+	if(!preg_match('/^[a-zA-Z0-9]+$/', @$postdata['employeeid']))
+	{
+		$err_str = "Invalid employeeid must be alpha-numaric";
+		return false;
+	}
+
+	// startdate
+	$matches = array();
+	if(!preg_match('/^(\d{4})\-(\d{2})\-(\d{2})$/', @$postdata['startdate'], $matches)
+	|| !checkdate($matches[2], $matches[3], $matches[1]))
+	{
+		$err_str = "Invalid date";
+		return false;
+	}
+	return true;
+}
 
 /**
  * Attempts to create a new account, and returns success rate.
@@ -30,20 +69,29 @@ define("ACCOUNT_ENC_IVSALT",  "arvba578abajk4a,k44NNIFNEldldldn5%");
  * which will explain what when wrong. In case of a system (uknown 
  * error), see the log
  */
-function account_create(string $email, string $pass) : bool
+function account_create(array $postdata) : bool
 {
 	global $account_error;
-	$cq = paydb()->prepare("insert into Accounts (email, password, encryption_salt)
-		values (?,?,?)");
-	$rq = paydb()->prepare("select count(*) from Accounts where email=?");
 
-	// Email
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-	{
-		$account_error="Invalid email format";
+	//validate the post data
+	if(!account_validpost($postdata, $account_error))
 		return false;
-	}
-	if(!$rq->execute(array($email)))
+	
+	// prepare the needed statements
+	$cq = getDB()->prepare("insert into users (username,password,firstname,lastname,email,employeeid,startdate)
+		values (?, ?,?,?,?,?,?)");
+	$rq = getDB()->prepare("select count(*) from users where email=? OR username=?");
+
+
+	// match some variables (this paragraph is used for code
+	// portability)
+	$email    = $postdata['email'];
+	$username = $postdata['username'];
+	$fname    = $postdata['firstname'];
+	$lname    = $postdata['lastname'];
+	$rawpass  = $postdata['password'];
+	
+	if(!$rq->execute(array($email,$username)))
 	{
 		log_crit($rq->errorInfo()[2]);
 		$account_error = "Unkown error";
@@ -51,22 +99,30 @@ function account_create(string $email, string $pass) : bool
 	}
 	if($rq->fetch()[0] !== "0")
 	{
-		$account_error = "An account with that email has already been made.";
+		$account_error = "An account with that email and/or username has already been made.";
 		return false;
 	}
 
 	// Password
-	list($salt, $password) = account_password($email, $pass, $account_error);
-	if(!$salt || !$password)
-	{
+	$password = account_password($rawpass, $account_error);
+	if(!$password)
 		return false;
-	}
 
-	// Insert the user
-	if(!$cq->execute(array($email,$password,$salt)))
+
+
+// Insert the user
+	$args = array();
+	array_push($args, $username);
+	array_push($args, $password);
+	array_push($args, $fname);
+	array_push($args, $lname);
+	array_push($args, $email);
+	array_push($args, $postdata['employeeid']);
+	array_push($args, $postdata['startdate']);
+	if(!$cq->execute($args))
 	{
 		log_crit($cq->errorInfo()[2]);
-		$account_error = "Unknown error, our administrators have been notified.";
+		$account_error = "Information couldn't be stored: database rejection";
 		return false;
 	}
 	return true;
@@ -77,16 +133,15 @@ function account_create(string $email, string $pass) : bool
  * email and password. returns null when the password does not match
  * the requirements, and $errstring is set to a user-readable error
  */
-function account_password(string $email, string $pass, &$password_error)
+function account_password(string $pass, &$password_error)
 {
-	$enc_salt = openssl_random_pseudo_bytes(32);
-	if(!preg_match('/(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W_]).{8,}/', $pass))
+	if(!preg_match('/.{5,}/', $pass))
 	{
-		$password_error = "Password must have 1 letter, 1 number, 1 special character, and be at least 8 characters in length. Sorry.";
+		$password_error = "Password must be at least 5 characters long";
 		return null;
 	}
 	$password = password_hash($pass, PASSWORD_DEFAULT);
-	return array($enc_salt, $password);
+	return $password;
 }
 
 function account_ispassword(account $a, string $pass)

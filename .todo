@@ -3,13 +3,13 @@
     <note priority="medium" time="1541278520" done="1543375414">
         Add todo items
     </note>
+    <note priority="medium" time="1543375356" done="1544210384">
+        kevin: Attachment uploading
+    </note>
     <note priority="medium" time="1541278565">
         rename all file names to use snake case
     </note>
-    <note priority="medium" time="1543375356">
-        kevin: Attachment uploading
-    </note>
-    <note priority="medium" time="1543375375">
+    <note priority="medium" time="1543375375" done="1544210389">
         brett: edit/add timesheet
     </note>
     <note priority="medium" time="1543375396">
