@@ -9,11 +9,11 @@ $account_error = '';
 class account
 {
 	public $accountid;
+	public $username;
 	public $email;
 	public $_data;
 	public $admin = 0;
-	public $reset_password_token;
-	public $reset_password_expiry;
+	public $resetpassword;
 }
 
 function account_validpost(array $postdata, string &$err_str = '') : bool
@@ -161,10 +161,15 @@ function account_login(string $email, string $password)
 {
 	// Get the account
 	global $account_error;
-	$stmt = paydb()->prepare("select * from Accounts where email=?");
+	if(!strlen($email))
+	{
+		$account_error = "No email provided";
+		return null;
+	}
+	$stmt = getDB()->prepare("select * from users where email=?");
 	if(!$stmt->execute(array($email)))
 	{
-		$account_error = "System error";
+		$account_error = "Error when finding email in database.";
 		return null;
 	}
 
@@ -172,7 +177,7 @@ function account_login(string $email, string $password)
 	$data = $stmt->fetch(2);
 	if(!$data)
 	{
-		$account_error = "Username not found";
+		$account_error = "Email not found";
 		return null;
 	}
 
@@ -192,26 +197,25 @@ function account_login(string $email, string $password)
 function _account_forge($data, string $password="")
 {
 	$a = new account();
-	$a->accountid    = $data['accountid'];
-	$a->_data        = $data;
-	$a->email        = $data['email'];
-	$a->admin        = (int)$data['admin'];
-	$a->reset_password_token  = $data['reset_password_token'];
-	$a->reset_password_expiry = $data['reset_password_expiry'];
-	if(!empty($password))
-		$a->_enc_data = account_key($password, $data['encryption_salt']);
+	$a->accountid     = $data['accountid'];
+	$a->username      = $data['username'];
+	$a->_data         = $data;
+	$a->email         = $data['email'];
+	$a->admin         = (int)$data['admin'];
+	$a->resetpassword = $data['resetpassword'];
 	return $a;
 }
 
-/** 
+/**
  * Selects an account given a reset_password_token.
  * If reset_password_token isn't found, null is returned.
  * An account object is returned on success.
  */
 function account_selectt(string $token)
 {
-	$select = paydb()->prepare("select * from Accounts where reset_password_token = ?");
-	if(!$select->execute(array($token))) {
+	$select = paydb()->prepare("select * from users where resetpassword = ?");
+	if(!$select->execute(array($token)))
+	{
 		log_crit($select->errorInfo()[2]);
 		return null;
 	}
@@ -222,55 +226,6 @@ function account_selectt(string $token)
 	}
 
 	return _account_forge($account_data);
-}
-
-/**
- * Returns the key generated from the password.
- * This key is used with openssl methods to encrypt and decrypt
- * data for this particular account.
- */
-function account_key(string $password, $salt)
-{
-	$ivsalt   = ACCOUNT_ENC_IVSALT;
-	$d['key'] = hash_hmac(ACCOUNT_ENC_HASH, $password, $salt, true);
-	$d['iv']  = substr(hash_hmac(ACCOUNT_ENC_HASH, strrev($password).$salt, $ivsalt, true),0,16);
-	return $d;
-}
-
-/*
- * Encrypts data using the account's encryption key(s)
- */
-function account_encrypt(account $a, string $data)
-{
-	return account_encryptk($a->_enc_data, $data);
-}
-
-/*
- * Same as account_encrypt execpt uses a raw key instead of 
- * $a->_enc_data.
- */
-function account_encryptk($key, string $data)
-{
-	return openssl_encrypt($data, ACCOUNT_ENC_METHOD
-	,$key['key']
-	,ACCOUNT_ENC_OPTIONS
-	,$key['iv']);	
-}
-
-/*
- * Decrypts data using the account's encryption key(s)
- */
-function account_decrypt(account $a, string $data)
-{
-	return account_decryptk($a->_enc_data, $data);
-}
-
-function account_decryptk($key, string $data)
-{
-	return openssl_decrypt($data, ACCOUNT_ENC_METHOD
-	,$key['key']
-	,ACCOUNT_ENC_OPTIONS
-	,$key['iv']);
 }
 
 /**
@@ -300,42 +255,4 @@ function account_session()
 {
 	if(empty($_SESSION['account_data'])) return null;
 	return $_SESSION['account_data'];
-}
-
-/**
- * Generates a random hash of size length
- */
-function _account_generate_hash(int $length)
-{
-	$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	$chars = str_shuffle($chars);
-	$hash = "";
-	for($i = 0; $i < $length; $i++)
-		$hash .= $chars[rand(0, strlen($chars)-1)];
-	return $hash;
-}
-
-/**
- * Returns true if the email exists and false if it does not.
- * An error message is inserted into $err_msg on a failure.
- */
-function account_get_id(string $email, string &$err_msg = "") {
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		$err_msg = "Invalid email.";
-		return false;
-	}
-		
-	$selectid = paydb()->prepare("select accountid from Accounts where email=?");
-	if(!$selectid->execute(array($email))) {
-		log_crit($selectid->errorInfo()[2]);
-		return false;
-	}
-
-	$id = $selectid->fetch()[0];
-	if(empty($id)){
-		$err_msg = "That email does not exist.";
-		return false;
-	}
-
-	return $id;
 }
