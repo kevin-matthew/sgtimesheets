@@ -57,12 +57,14 @@ function uploadattachment(string $file_upload_name, string &$err_str = '')
 	// Sometimes the MIME type will default to octet-stream even
 	// though its a zip file/xlsx. So we just say fuck it and append
 	// the user specified extension. Only if it's an okay extension,
-	// of course.
+	// of course.  Furthermore we'll check to make sure the extension
+	// is in the allowed types.
 	if($ext == 'bin')
 	{
 		if(preg_match('/\.([a-zA-Z0-9]+)$/'
 		, $tmpfile['name']
-		, $matches))
+		, $matches)
+		&& array_search($matches[1], array_keys(SGTS_ALLOWEDTYPE))
 			$ext = $matches[1];
 		else
 		{

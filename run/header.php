@@ -9,5 +9,6 @@
 
 <body>
   <header>
-	 <h1>Header nigger</h1>
+	 <div style="text-align:center"><h1>Timesheet Manager</h1>
+	 <h2>SmartGeo Tech</h2></div>
   </header>
