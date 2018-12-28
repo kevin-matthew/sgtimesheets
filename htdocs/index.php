@@ -1,41 +1,65 @@
 <?php
-include ('../lib/db.php');
-$db = getDB();
-function genTableBody($id) {
-	global $db;
-	$sql = "SELECT * FROM timesheets WHERE userid=:userid;";
-	$query = $db->prepare($sql);
-	$query->execute(array(':userid' => $id));
-	$result = $query->fetchAll();
-
-	foreach($result as $row) {
-		print '<tr>';
-		print '<td>' . $row['fromdate'] . '</td>';
-		print '<td>' . $row['enddate'] . '</td>';
-		print '<td>' . $row['totalhours'] . '</td>';
-		print '<td>' . $row['filelocation'] . '</td>';
-		print '<td><a href="/timeSheet?id='.$row['timesheetid'].'">edit</a>';
-		print '</tr>';
-	}
-}
-
+//require_once 'run/auth.php';
+require_once 'lib/db.php';
+	 $db = getDB();
+	 $isadmin = true;
 include ('../run/header.php');
-?>
-    <section class="content">
-		<a class="button" href="/timeSheet">Add Timesheet</a>
-		<table>
-			<thead>
-				<tr class="tableColumnLabels">
-					<th>Start Date</th>
-					<th>End Date</th>
-					<th>Total Hours</th>
-					<th>Attachment</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?=genTableBody(1); /* '1' is for temporary testing, replace with actual user's ID */ ?>
-			</tbody>
-		</table>
+	 ?>
+<style>
+	nav.panel
+	{
+	
+	}
+	nav.panel a
+	{
+	display:block;
+	padding:10px;
+	margin:4px;
+	background-color:#37749D;
+	color:#fff;
+	}
+	nav.panel.admin a
+	{
+	background-color:#4f7fdf;
+	}
+	
+</style>
+<section class="content">
+	<main>
+		<h2>Welcome to SG Timesheet Manager</h2>
+		<p>
+			Select one of the follow menus to begin exchanging
+			timesheets with SmartGeoTech.
+		</p>
+		<?php if($isadmin): ?>
+		<p>
+			<strong>You are logged into an administrative account</strong>,
+			additional menus will be displayed.</p>
+		</p>
+		<?php endif; ?>
+	</main>
+
+<aside>
+	<h3>User Panel</h3>
+			<nav class="panel">
+				<a href="/timesheet">Add a new timesheet</a>
+				<a href="/account">Manage your Account</a>
+				<a href="/user-timesheet">See your timesheets</a>
+				<a style="background-color:#990000" href="/logout">Log out</a>
+			</nav>
+		</aside>
+<?php if($isadmin): ?>
+<aside>
+	<h3>Administrative Panel</h3>
+
+	<nav class="panel admin">
+		<a href="/all-timesheets">See all timesheets</a>
+		<a href="/add-user">Add User</a>
+		<a href="/manage-user">Manage Existing Users</a>
+	</nav>
+</aside>
+<?php endif; ?>
+
 	</section>
 </body>
 </html>

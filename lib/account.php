@@ -197,7 +197,7 @@ function account_login(string $email, string $password)
 function _account_forge($data, string $password="")
 {
 	$a = new account();
-	$a->accountid     = $data['accountid'];
+	$a->accountid     = $data['userid'];
 	$a->username      = $data['username'];
 	$a->_data         = $data;
 	$a->email         = $data['email'];
