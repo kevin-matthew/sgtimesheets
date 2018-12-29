@@ -9,11 +9,20 @@
     <note priority="medium" time="1543375375" done="1544210389">
         brett: edit/add timesheet
     </note>
+    <note priority="veryhigh" time="1546106381">
+        Make login actually work. It does nothing now.
+    </note>
+    <note priority="high" time="1546106430">
+        Make all-timesheets not display warnings. Right now it displays a warning that the coumn timesheets.ts in not found.
+    </note>
+    <note priority="high" time="1546106543">
+        For the love of God make these pages look good.
+    </note>
+    <note priority="high" time="1546106671">
+        Figure out how we are going to add an initial admin account (some email trickery).
+    </note>
     <note priority="medium" time="1541278565">
         rename all file names to use snake case
-    </note>
-    <note priority="medium" time="1543375396">
-        parker edit/add timesheet (frontend)
     </note>
     <note priority="medium" time="1543516265">
         Validate date field to make sure the fromdate isn't after the enddate.
@@ -23,5 +32,8 @@
     </note>
     <note priority="medium" time="1544735259">
         I just realize duplicated uploads of the same file from two different users will override the existing file because their SHA1 is the same. fix dis.
+    </note>
+    <note priority="medium" time="1546106459">
+        Add searches and sorts for seeing your own timesheets/seeing all timesheets.
     </note>
 </todo>
