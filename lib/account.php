@@ -17,7 +17,7 @@ class account
 	public $resetpassword;
 }
 
-function account_validpost(array $postdata, string &$err_str = '') : bool
+function account_validpost(array $postdata, string &$err_str = '', bool $edit_proc = true) : bool
 {
 	// username
 	if(!preg_match('/^[a-zA-Z0-9]+$/',@$postdata['username']))
@@ -39,27 +39,31 @@ function account_validpost(array $postdata, string &$err_str = '') : bool
 		$err_str = "Invalid lastname";
 		return false;
 	}
-	
-	// email
-	if(!filter_var(@$postdata['email'], FILTER_VALIDATE_EMAIL))
-	{
-		$err_str="Invalid email format";
-		return false;
-	}
 
-	if(!preg_match('/^[a-zA-Z0-9]+$/', @$postdata['employeeid']))
+	if($edit_proc)
 	{
-		$err_str = "Invalid employeeid must be alpha-numaric";
-		return false;
-	}
+		// email
+		if(!filter_var(@$postdata['email'], FILTER_VALIDATE_EMAIL))
+		{
+			$err_str="Invalid email format";
+			return false;
+		}
 
-	// startdate
-	$matches = array();
-	if(!preg_match('/^(\d{4})\-(\d{2})\-(\d{2})$/', @$postdata['startdate'], $matches)
-	|| !checkdate($matches[2], $matches[3], $matches[1]))
-	{
-		$err_str = "Invalid date";
-		return false;
+		// employeeid
+		if(!preg_match('/^[a-zA-Z0-9]+$/', @$postdata['employeeid']))
+		{
+			$err_str = "Invalid employeeid must be alpha-numaric";
+			return false;
+		}
+
+		// startdate
+		$matches = array();
+		if(!preg_match('/^(\d{4})\-(\d{2})\-(\d{2})$/', @$postdata['startdate'], $matches)
+		|| !checkdate($matches[2], $matches[3], $matches[1]))
+		{
+			$err_str = "Invalid date";
+			return false;
+		}
 	}
 	return true;
 }
@@ -228,6 +232,19 @@ function account_selectt(string $token)
 	}
 
 	return _account_forge($account_data);
+}
+
+/**
+ * Selects the account with a given id. If the query failed or the
+ * account was not found, null is returned.
+ */
+function account_selectid(int $id)
+{
+	$res = getDB()->query("select * from users where userid = $id");
+	if(!$res) return null;
+	$row = null;
+	if(!($row = $res->fetch(2))) return null;
+	return _account_forge($row);
 }
 
 /**
