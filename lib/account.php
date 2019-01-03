@@ -13,6 +13,7 @@ class account
 	public $email;
 	public $_data;
 	public $admin = 0;
+	public $dname; // display name.
 	public $resetpassword;
 }
 
@@ -203,6 +204,7 @@ function _account_forge($data, string $password="")
 	$a->email         = $data['email'];
 	$a->admin         = (int)$data['admin'];
 	$a->resetpassword = $data['resetpassword'];
+	$a->dname         = $data['firstname'] . ' ' . $data['lastname'];
 	return $a;
 }
 
