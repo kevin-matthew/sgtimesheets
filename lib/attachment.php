@@ -64,7 +64,7 @@ function uploadattachment(string $file_upload_name, string &$err_str = '')
 		if(preg_match('/\.([a-zA-Z0-9]+)$/'
 		, $tmpfile['name']
 		, $matches)
-		&& array_search($matches[1], array_keys(SGTS_ALLOWEDTYPE))
+		&& array_search($matches[1], array_keys(SGTS_ALLOWEDTYPE)))
 			$ext = $matches[1];
 		else
 		{

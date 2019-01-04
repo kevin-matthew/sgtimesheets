@@ -14,8 +14,9 @@ $loginmsg = $a != false ? "Logged in as " . $a->dname
 </head>
 
 <body>
-  <header>
+	<header style="display:block;text-align:center;">
 	 <div style="text-align:center"><h1>Timesheet Manager</h1>
 	 <h2>SmartGeo Tech</h2></div>
 	<h3><?php print $loginmsg; ?></h3>
+<nav><a href="/">Home</a></nav>
   </header>

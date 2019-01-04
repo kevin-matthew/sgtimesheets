@@ -14,7 +14,12 @@ require_once('attachment.php');
  *  Pointer to a string variable that will store an error message
  *  if anything fails.
  */
-function updateTimesheet(array $post, string $attachmentname, int $timesheetid, string &$err_msg = '') {
+function updateTimesheet(array $post
+, string $attachmentname
+, int $timesheetid
+, int $userid
+, int $isadmin = 0
+, string &$err_msg = '') {
 	/*
 	  Check if the time sheet is the user's/the user is an admin
 	 */
@@ -46,6 +51,20 @@ function updateTimesheet(array $post, string $attachmentname, int $timesheetid, 
 	// Force totalhours into a float:
 	$totalhours = (float)$post['totalhours'];
 
+	// Check to make sure that this user has permission to edit this
+	// timesheet.
+	if(!$isadmin)
+	{
+		$res = getDB()->query("select timesheetid from timesheets 
+where userid=$userid and $timesheetid=$timesheetid");
+		if(!$res || !$res->fetch(2))
+		{
+			$err_msg = "You do not have permission to edit this timesheet.";
+			return false;
+		}
+		
+	}
+
 	if(!$attachmentlocation = uploadattachment($attachmentname, $err_msg)) {
 		return false;
 	}
@@ -56,9 +75,23 @@ function updateTimesheet(array $post, string $attachmentname, int $timesheetid, 
 	. "SET fromdate = :fromdate, enddate = :enddate, totalhours = :totalhours, filelocation = :attachment "
 	. "WHERE timesheetid = :timesheetid");
 	
-	if(!$updateQuery->execute(array(':fromdate'=>$fromdate, ':enddate'=>$enddate,
-	':totalhours'=>$totalhours, ':timesheetid'=>$timesheetid, ':attachment'=>$attachmentlocation))) {
+	if(!$updateQuery->execute(array(
+		':fromdate'=>$fromdate
+		,':enddate'=>$enddate
+		,':totalhours'=>$totalhours
+		,':timesheetid'=>$timesheetid
+		,':attachment'=>$attachmentlocation)
+	))
+	{
 		$err_msg = "Something went wrong with the database, try again later.";
+		return false;
+	}
+
+	
+
+	if(!$updateQuery->rowCount())
+	{
+		$err_msg = "Database exeucted successfully, but no record was modified.";
 		return false;
 	}
 	

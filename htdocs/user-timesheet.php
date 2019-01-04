@@ -23,7 +23,7 @@ function genTableBody($id) {
 include ('../run/header.php');
 ?>
     <section class="content">
-		<a class="button" href="/timeSheet">Add Timesheet</a>
+		<a class="button" href="/timesheet">Add Timesheet</a>
 		<table>
 			<thead>
 				<tr class="tableColumnLabels">
