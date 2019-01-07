@@ -18,30 +18,31 @@ if(!empty($_POST['Submit'])) {
 
 include 'run/header.php';
 ?>
-<section>
 <title>Add a new timesheet</title>
-<main>
-<h3>Add a new timesheet</h3>
-	<form method="post" action="" enctype="multipart/form-data">
-		<p class='usrin'>
-	<label>Start Date</label>
-		<input name="fromdate" type="date" value="<?=$timesheetData['fromdate'];?>">
-	</p>
-	<p class="usrin">
-		<label>End Date</label>
-		<input name="enddate" type="date" value="<?=$timesheetData['enddate']; ?>">
-	</p>
-	<p class="usrin">
-		<label>Total Hours</label>
-		<input name="totalhours" type="number" step="0.1" value="<?=$timesheetData['totalhours']; ?>">
-	</p>
-	<p class="usrin">
-		<label>Attachment</label>
-		<input type="file" name="attachment">
-	</p>
-	<?=$err_msg?>
-		<input type="submit" name="Submit">
-	</form>
+
+<section>
+	<main>
+		<h3>Add a new timesheet</h3>
+		<form method="post" action="" enctype="multipart/form-data">
+			<p class='usrin'>
+		<label>Start Date</label>
+			<input name="fromdate" type="date" value="<?=$timesheetData['fromdate'];?>">
+		</p>
+		<p class="usrin">
+			<label>End Date</label>
+			<input name="enddate" type="date" value="<?=$timesheetData['enddate']; ?>">
+		</p>
+		<p class="usrin">
+			<label>Total Hours</label>
+			<input name="totalhours" type="number" step="0.1" value="<?=$timesheetData['totalhours']; ?>">
+		</p>
+		<p class="usrin">
+			<label>Attachment</label>
+			<input type="file" name="attachment">
+		</p>
+		<?=$err_msg?>
+			<input type="submit" name="Submit">
+		</form>
 	</main>
 </section>
 <?php

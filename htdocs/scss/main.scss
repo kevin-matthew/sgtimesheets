@@ -19,7 +19,7 @@ body
 	{
 		max-width:50%;
 		margin:0 auto;
-		margin-bottom:40px;
+		margin-bottom:55px;
 		display:flex;
 		align-items:center;
 		flex-direction:row;
@@ -70,6 +70,10 @@ body
             display:block;
 			max-width:700px;
 			margin:0 50px;
+			h3 
+			{
+				text-align: center;
+			}
         }
 
 		aside
