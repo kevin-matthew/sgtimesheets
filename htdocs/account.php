@@ -106,10 +106,12 @@ if(!empty(@$_POST['submit']))
 
 include ('../run/header.php');
 ?>
+<title>Account Management</title>
 
 <section>
 
 	<main>
+		<h3>Account Management</h3>
 		<form method="post" action="">
 			<p class="usrin">
 				<label >First Name</label>

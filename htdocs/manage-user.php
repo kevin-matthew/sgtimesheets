@@ -2,8 +2,12 @@
 include ('../run/header.php');
 
 ?>
+<title>User Management</title>
 
 <section>
+	<main>
+		<h3>User Management</h3>
+	</main>
 	<ul>
 		<li>Contains a table of all users. Should have columns for
 			user name, owner's name, email, employee ID, start date,

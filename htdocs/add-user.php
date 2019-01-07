@@ -15,8 +15,12 @@ if(!empty(@$_POST['submit']))
 }
 include 'run/header.php';
 	 ?>
+
+<title>Add User</title>
+
 <section>
 	<main>
+		<h3>Add User</h3>
 		<form method="post" action="">
 			<p class="usrin">
 				<label >First Name</label>

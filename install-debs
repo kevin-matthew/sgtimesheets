@@ -1,0 +1,6 @@
+#!/bin/bash
+
+RUNTIME="discount nginx php7.0 php7.0-fpm php7.0-mysql"
+BUILD="ruby-sass devtodo git"
+
+apt install $RUNTIME $BUILD
