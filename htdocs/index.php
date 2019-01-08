@@ -42,9 +42,9 @@ include ('../run/header.php');
 <aside>
 	<h3>User Panel</h3>
 			<nav class="panel">
-				<a href="/timesheet">Add a new timesheet</a>
+				<a href="/view-timesheets">Add a new timesheet</a>
 				<a href="/account">Manage your Account</a>
-				<a href="/user-timesheet">See your timesheets</a>
+				<a href="/view-timesheets">See your timesheets</a>
 				<a style="background-color:#990000" href="/logout">Log out</a>
 			</nav>
 		</aside>
@@ -53,7 +53,7 @@ include ('../run/header.php');
 	<h3>Administrative Panel</h3>
 
 	<nav class="panel admin">
-		<a href="/all-timesheets">See all timesheets</a>
+		<a href="/view-timesheets?all">See all timesheets</a>
 		<a href="/add-user">Add User</a>
 		<a href="/manage-user">Manage Existing Users</a>
 	</nav>

@@ -1,10 +1,22 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
+    <note priority="veryhigh" time="1546106381" done="1546981878">
+        Make login actually work. It does nothing now.
+    </note>
     <note priority="high" time="1546106430" done="1546545673">
         Make all-timesheets not display warnings. Right now it displays a warning that the coumn timesheets.ts in not found.
         <comment>
             Sent brett the info detailing why this wont be an issue
         </comment>
+    </note>
+    <note priority="high" time="1546106543" done="1546545695">
+        For the love of God make these pages look good.
+        <comment>
+            Easy, we manually input the row and then we just generate the password with php script
+        </comment>
+    </note>
+    <note priority="high" time="1546106671" done="1546981890">
+        Figure out how we are going to add an initial admin account (some email trickery).
     </note>
     <note priority="medium" time="1541278520" done="1543375414">
         Add todo items
@@ -15,23 +27,14 @@
     <note priority="medium" time="1543375375" done="1544210389">
         brett: edit/add timesheet
     </note>
-    <note priority="veryhigh" time="1546106381">
-        Make login actually work. It does nothing now.
-    </note>
-    <note priority="high" time="1546106543" done="1546545695">
-        For the love of God make these pages look good.
-        <comment>
-            Easy, we manually input the row and then we just generate the password with php script
-        </comment>
-    </note>
-    <note priority="high" time="1546106671">
-        Figure out how we are going to add an initial admin account (some email trickery).
-    </note>
     <note priority="high" time="1546471172">
         Create manage-user.php by following the list on the page.
     </note>
     <note priority="high" time="1546471188">
         Create account.php by following the list on the page.
+    </note>
+    <note priority="high" time="1546982848">
+        make timesheets.php work for non-admins
     </note>
     <note priority="medium" time="1541278565">
         rename all file names to use snake case

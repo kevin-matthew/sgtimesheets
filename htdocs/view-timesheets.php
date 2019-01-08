@@ -92,20 +92,9 @@ EOF;
 
 include 'run/header.php';
 ?>
-<h1 style="width: 100%; text-align: center;">Admin Homepage</h1>
-<section>
-	<nav>
-    <a href="search.php">
-	<button>Search</button>
-    </a>
-
-    <a href="userManagement.php">
-	<button>User Management</button>
-    </a>
-	</nav>	
-</section>
-
 <section class="content">
+	<main style="width:100%">
+	<h3>All Timesheets Submitted</h3>
 	<table>
 		<thead>
 			<tr class="tableColumnLabels">
@@ -121,6 +110,7 @@ include 'run/header.php';
 			<?=genrows()?>
 		</tbody>
 	</table>
+	</main>
 </section>
-</php
+<?php
 	include 'run/footer.php';;
