@@ -85,7 +85,7 @@ function account_create(array $postdata) : bool
 	// prepare the needed statements
 	$cq = getDB()->prepare("insert into users (username,password,firstname,lastname,email,employeeid,startdate)
 		values (?, ?,?,?,?,?,?)");
-	$rq = getDB()->prepare("select count(*) from users where email=? OR username=?");
+	$rq = getDB()->prepare("select count(*) from users where email=? OR username=? OR employeeid=?");
 
 
 	// match some variables (this paragraph is used for code
@@ -96,7 +96,7 @@ function account_create(array $postdata) : bool
 	$lname    = $postdata['lastname'];
 	$rawpass  = $postdata['password'];
 	
-	if(!$rq->execute(array($email,$username)))
+	if(!$rq->execute(array($email,$username,$postdata['employeeid'])))
 	{
 		log_crit($rq->errorInfo()[2]);
 		$account_error = "Unkown error";
@@ -104,7 +104,7 @@ function account_create(array $postdata) : bool
 	}
 	if($rq->fetch()[0] !== "0")
 	{
-		$account_error = "An account with that email and/or username has already been made.";
+		$account_error = "An account with that email, username, or employeeid has already been made.";
 		return false;
 	}
 
@@ -126,7 +126,6 @@ function account_create(array $postdata) : bool
 	array_push($args, $postdata['startdate']);
 	if(!$cq->execute($args))
 	{
-		log_crit($cq->errorInfo()[2]);
 		$account_error = "Information couldn't be stored: database rejection";
 		return false;
 	}

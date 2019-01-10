@@ -1,4 +1,5 @@
 <?php
+require_once 'run/admin-only.php';
 include ('../run/header.php');
 
 ?>

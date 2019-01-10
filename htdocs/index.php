@@ -1,8 +1,8 @@
 <?php
-//require_once 'run/auth.php';
+require_once 'run/auth.php';
 require_once 'lib/db.php';
 	 $db = getDB();
-	 $isadmin = true;
+	 $isadmin = $account->admin;
 include ('../run/header.php');
 	 ?>
 <style>
@@ -42,7 +42,7 @@ include ('../run/header.php');
 <aside>
 	<h3>User Panel</h3>
 			<nav class="panel">
-				<a href="/view-timesheets">Add a new timesheet</a>
+				<a href="/add-timesheet">Add a new timesheet</a>
 				<a href="/account">Manage your Account</a>
 				<a href="/view-timesheets">See your timesheets</a>
 				<a style="background-color:#990000" href="/logout">Log out</a>

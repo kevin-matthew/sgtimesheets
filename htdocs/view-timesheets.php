@@ -1,9 +1,9 @@
 <?php
-require_once 'run/admin-only.php';
+require_once 'run/auth.php';
 require_once 'lib/db.php';
 
 // download a given timesheet.
-function dl(int $id)
+function dl(int $id, account $account)
 {
 	$sql = "select timesheets.filelocation 
 , users.username
@@ -13,6 +13,10 @@ from timesheets
 join users on timesheets.userid=users.userid
 where timesheets.timesheetid = $id
 ";
+	if(!$account->admin)
+	{
+		$sql .= " and timesheets.userid = " . $account->accountid;
+	}
 	$res = getDB()->query($sql);
 	if(!$res)
 	{
@@ -54,11 +58,12 @@ where timesheets.timesheetid = $id
 
 if(!empty(@$_GET['dl']) && is_numeric($_GET['dl']))
 {
-	dl($_GET['dl']);
+	dl($_GET['dl'], $account);
 	exit;
 }
 
-function genrows()
+// Will only show all if $showall = true and $account is admin
+function genrows(account $account, $showall)
 {
 	$sql = <<<EOF
 select concat(users.firstname, ' ', users.lastname) as fullname
@@ -69,8 +74,10 @@ select concat(users.firstname, ' ', users.lastname) as fullname
 , concat('<a href="?dl=', timesheets.timesheetid, '">link</a>') as link
 from timesheets
 join users on timesheets.userid = users.userid
-ORDER BY timesheets.ts
 EOF;
+	if(!$showall || !$account->admin)
+		$sql .= ' where timesheets.userid = ' . $account->accountid;
+	$sql .= ' ORDER BY timesheets.ts';
 	$error = '';
 	$res = getDB()->query($sql);
 	if(!$res)
@@ -107,7 +114,7 @@ include 'run/header.php';
 			</tr>
 		</thead>
 		<tbody>
-			<?=genrows()?>
+<?=genrows($account, isset($_GET['all']))?>
 		</tbody>
 	</table>
 	</main>

@@ -8,7 +8,7 @@ $err_msg = "";
 if(!empty($_POST['Submit'])) {
 	if(insertTimesheet($_POST, 'attachment', $userID, $err_msg))
 	{
-		$err_msg = "<success>Successfully added new timesheet</success>";
+		$err_msg = "<success>Successfully added new timesheet, <a href='/view-timesheets'>view here</a>.</success>";
 	}
 	else
 	{
