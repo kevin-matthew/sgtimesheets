@@ -43,12 +43,18 @@
         Validate date field to make sure the fromdate isn't after the enddate.
     </note>
     <note priority="medium" time="1543516291">
-        Validate the totalhours field to make sure it isn't a negative number.
+        Validate the totalhours field to make sure it isn't a negative (or overflowing large) number.
     </note>
     <note priority="medium" time="1544735259">
         I just realize duplicated uploads of the same file from two different users will override the existing file because their SHA1 is the same. fix dis.
     </note>
     <note priority="medium" time="1546106459">
         Add searches and sorts for seeing your own timesheets/seeing all timesheets.
+    </note>
+    <note priority="verylow" time="1547363570">
+        Make it so one invalid field (e.g. a non-alphanumeric username in the 'Add User' page) only clears out the invalid field, not all of the fields that have been filled in.
+    </note>
+    <note priority="verylow" time="1547363953">
+        It should probably require the current password to be given in order to change a password in the 'Manage Account' page.
     </note>
 </todo>
