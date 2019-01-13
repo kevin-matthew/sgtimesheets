@@ -20,7 +20,7 @@ class account
 function account_validpost(array $postdata, string &$err_str = '', bool $edit_proc = true) : bool
 {
 	// username
-	if(!preg_match('/^[a-zA-Z0-9]+$/',@$postdata['username']))
+	if(!preg_match("/^[a-zA-Z0-9_]*$/",@$postdata['username']))
 	{
 		$err_str = "Username must be alphanumaric";
 		return false;

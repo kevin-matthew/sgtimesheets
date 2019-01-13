@@ -70,14 +70,13 @@ select concat(users.firstname, ' ', users.lastname) as fullname
 , timesheets.totalhours
 , timesheets.fromdate
 , timesheets.enddate
-, timesheets.ts
-, concat('<a href="?dl=', timesheets.timesheetid, '">link</a>') as link
+, concat('<a href="?dl=', timesheets.filelocation, ' ">Download File</a>') as link
 from timesheets
 join users on timesheets.userid = users.userid
 EOF;
 	if(!$showall || !$account->admin)
 		$sql .= ' where timesheets.userid = ' . $account->accountid;
-	$sql .= ' ORDER BY timesheets.ts';
+	$sql .= ' ORDER BY timesheets.filelocation';
 	$error = '';
 	$res = getDB()->query($sql);
 	if(!$res)
@@ -109,7 +108,6 @@ include 'run/header.php';
 				<th>Total Hours</th>
 				<th>Start Date</th>
 				<th>End Date</th>
-	<th>Uploaded time</th>
 				<th>Download</th>
 			</tr>
 		</thead>
