@@ -70,7 +70,7 @@ select concat(users.firstname, ' ', users.lastname) as fullname
 , timesheets.totalhours
 , timesheets.fromdate
 , timesheets.enddate
-, concat('<a href="?dl=', timesheets.filelocation, ' ">Download File</a>') as link
+, concat('<a href="?dl=', timesheets.timesheetid, '">Download File</a>') as link
 from timesheets
 join users on timesheets.userid = users.userid
 EOF;
