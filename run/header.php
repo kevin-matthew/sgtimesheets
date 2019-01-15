@@ -2,7 +2,7 @@
 require_once 'lib/account.php';
 $a = account_session();
 $loginmsg = $a != false ? '<div style="float: left;">Logged in as ' . $a->dname . '</div>'
-	. ' <a href="/logout.php" style="float: right;">Logout</a>' : '<a href="/login.php" style="float: right;">Login</a>';
+	. '<a href="/" style="padding-right: 15%;"> Home </a>' . ' <a href="/logout.php" style="float: right;">Logout</a>' : '<a href="/login.php" style="float: right;">Login</a>';
 ?>
 <html lang="en-US">
 <head>
@@ -16,7 +16,7 @@ $loginmsg = $a != false ? '<div style="float: left;">Logged in as ' . $a->dname 
 
 <body>
 	<header style="display:block;text-align:center;">
-	 <a href="/" style="color:#444;">
+	 <a style="color:#444;">
 	 	<div style="text-align:center"><h1>Timesheet Manager</h1>
 	 	<h2>SmartGeo Tech</h2>
 	 	</div>
