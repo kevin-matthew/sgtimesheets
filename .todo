@@ -51,6 +51,12 @@
     <note priority="medium" time="1546106459">
         Add searches and sorts for seeing your own timesheets/seeing all timesheets.
     </note>
+    <note priority="medium" time="1547836108">
+        Allow hyphenated first and last names in 'Add User' fields
+    </note>
+    <note priority="low" time="1547835609">
+        Fix header for mobile (starts wrapping under the line at around 900px width)
+    </note>
     <note priority="verylow" time="1547363570">
         Make it so one invalid field (e.g. a non-alphanumeric username in the 'Add User' page) only clears out the invalid field, not all of the fields that have been filled in.
     </note>
