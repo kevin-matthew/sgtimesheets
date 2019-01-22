@@ -2,26 +2,38 @@
 require_once 'run/admin-only.php';
 include ('../run/header.php');
 
+function view_users()
+{
+	$sql = 'select * from users';
+	$res = getDB()->query($sql);
+	if(!$res)
+		return '<tr><td colspan="100%">Error with database</td></tr>';
+	$ret = '';
+	while($row = $res->fetch(2))
+	{
+		$ret .= sprintf('<tr><td>%s %s</td><td>%s</td><td>%s</td></tr>'
+		, $row['firstname']
+		, $row['lastname']
+		, $row['email']
+		, '<a href="/account?editid=' . $row['userid'] . '">Edit</a>');
+	}
+	if(!$ret)
+		$ret = '<tr><td colspan="100%">No data found</td></tr>';
+	return $ret;
+}
 ?>
 <title>User Management</title>
 
 <section>
 	<main>
 		<h3>User Management</h3>
+		<table>
+			<thead><tr><th>Name</th><th>Email</th><th>Link</th></tr></thead>
+			<tbody>
+				<?=view_users()?>
+			</tbody>
+		</table>
 	</main>
-	<ul>
-		<li>Contains a table of all users. Should have columns for
-			user name, owner's name, email, employee ID, start date,
-			and is admin.</li>
-		<li>Each row of the table links to a /account/[account-number].</li>
-		<li>There should be ways to search/sort.</li>
-		<ul>
-			<li>Sort by last name, first name, user name, email, employee ID,
-				and start date</li>
-			<li>Search by ability for last name, first name, user name, email, 
-				and employee ID</li>
-		</ul>
-	</ul>
 </section>
 
 </body>
