@@ -20,35 +20,12 @@ function updateTimesheet(array $post
 , int $userid
 , int $isadmin = 0
 , string &$err_msg = '') {
-	/*
-	  Check if the time sheet is the user's/the user is an admin
-	 */
+	if(!_validate($post, $err_msg)) {
+		return false;
+	}
 	
-	// Validate start date:
-	$date = explode("-", $post['fromdate']);
-	if(count($date) !== 3) {
-		$err_msg = "The start date is an invalid date.";
-		return false;
-	}
-	if(!checkdate($date[1], $date[2], $date[0])) {
-		$err_msg = "The start date is an invalid date.";
-		return false;
-	}
 	$fromdate = $post['fromdate'];
-
-	// Validate end date:
-	$date = explode("-", $post['enddate']);
-	if(count($date) !== 3) {
-		$err_msg = "The end date is an invalid date.";
-		return false;
-	}
-	if(!checkdate($date[1], $date[2], $date[0])) {
-		$err_msg = "The end date is an invalid date.";
-		return false;
-	}
 	$enddate = $post['enddate'];
-
-	// Force totalhours into a float:
 	$totalhours = (float)$post['totalhours'];
 
 	// Check to make sure that this user has permission to edit this
@@ -111,6 +88,32 @@ where userid=$userid and $timesheetid=$timesheetid");
  *  if anything fails.
  */
 function insertTimesheet(array $post, string $attachmentname, int $userID, string &$err_msg = '') {
+	if(!_validate($post, $err_msg)) {
+		return false;
+	}
+	
+	$fromdate = $post['fromdate'];
+	$enddate = $post['enddate'];
+	$totalhours = (float)$post['totalhours'];
+
+	if(!$attachmentlocation = uploadattachment($attachmentname, $err_msg)) {
+		return false;
+	}
+	
+	$db = getDB();
+	
+	$insert = $db->prepare("INSERT INTO timesheets (userid, fromdate, enddate, totalhours, filelocation) "
+		."VALUES (?,?,?,?,?)");
+	
+	if(!$insert->execute(array($userID, $fromdate, $enddate, $totalhours, $attachmentlocation))) {
+		$err_msg = "Something went wrong with the database, try again later.";
+		return false;
+	}
+
+	return true;
+}
+
+function _validate(array $post, string &$err_msg = '') {
 	// Validate start date:
 	$date = explode("-", $post['fromdate']);
 	if(count($date) !== 3) {
@@ -135,23 +138,18 @@ function insertTimesheet(array $post, string $attachmentname, int $userID, strin
 	}
 	$enddate = $post['enddate'];
 
-	// Force totalhours into a float:
+	// Make sure enddate is after fromdate:
+	if(strtotime($enddate) < strtotime($fromdate)) {
+		$err_msg = "The end date can't be a date before the start date.";
+		return false;
+	}
+
 	$totalhours = (float)$post['totalhours'];
-
-	if(!$attachmentlocation = uploadattachment($attachmentname, $err_msg)) {
+	if($totalhours < 0) {
+		$err_msg = "Total hours cannot be a negative number.";
 		return false;
 	}
 	
-	$db = getDB();
-	
-	$insert = $db->prepare("INSERT INTO timesheets (userid, fromdate, enddate, totalhours, filelocation) "
-		."VALUES (?,?,?,?,?)");
-	
-	if(!$insert->execute(array($userID, $fromdate, $enddate, $totalhours, $attachmentlocation))) {
-		$err_msg = "Something went wrong with the database, try again later.";
-		return false;
-	}
-
 	return true;
 }
 ?>
