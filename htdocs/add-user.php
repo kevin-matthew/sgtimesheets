@@ -1,5 +1,5 @@
 <?php
-require_once 'lib/admin-only.php';
+require_once 'run/admin-only.php';
 $error = '';
 if(!empty(@$_POST['submit']))
 	 {
