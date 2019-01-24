@@ -5,7 +5,7 @@
 		display:block;
 		overflow:auto;
 	}
-	
+
 	section
 	{
 		display:block;
@@ -15,30 +15,26 @@
 	header
 	{
 		flex-direction: column;
-		#menu
-		{
-		width:100% !important;
+		width:100%;
 		nav
 		{
-			flex-direction:row !important;
-			flex-wrap:wrap;
+			display: flex;
+			flex-direction:column;
 			a
 			{
-				flex:1 1 25%;
+				float: middle;
 				&:before
 				{
 					display:none;
 				}
 			}
 		}
-		}
 	}
-	
 	aside, main
 	{
 		width:100%;
 	}
-	
+
 	fieldset > usrin
 	{
 		display:block;
@@ -48,6 +44,4 @@
 	{
 		display:none !important;
 	}
-
-	
 }

@@ -15,7 +15,7 @@ body
 	background:#fff;
 	color:#444;
 	font-family:'Exo';
-    header
+  header
 	{
 		max-width:50%;
 		margin:0 auto;
@@ -26,7 +26,6 @@ body
         flex-wrap: wrap;
 		align-content:center;
 		justify-content:center;
-		height:150px;
 		border-bottom:2px solid $ellem-green;
 		#brand
 		{
@@ -50,15 +49,15 @@ body
 				display:flex;
 				flex-direction:row;
 				a
-				{	
+				{
 					text-align:center;
 					padding:9px;
 					display:block;
-					font-size:1.1em; 			
-				}	
+					font-size:1.1em;
+				}
 			}
 		}
-	
+
 	}
     section
     {
@@ -70,7 +69,7 @@ body
             display:block;
 			max-width:700px;
 			margin:0 50px;
-			h3 
+			h3
 			{
 				text-align: center;
 			}
@@ -108,7 +107,7 @@ body
 			font-size:16px;
 			font-family:serif;
 		}
-        		
+
 		&.banner
 		{
 			background-size:cover;

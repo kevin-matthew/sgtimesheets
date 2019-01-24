@@ -8,16 +8,15 @@
     flex-wrap: wrap; }
 
   header {
-    flex-direction: column; }
-    header #menu {
-      width: 100% !important; }
-      header #menu nav {
-        flex-direction: row !important;
-        flex-wrap: wrap; }
-        header #menu nav a {
-          flex: 1 1 25%; }
-          header #menu nav a:before {
-            display: none; }
+    flex-direction: column;
+    width: 100%; }
+    header nav {
+      display: flex;
+      flex-direction: column; }
+      header nav a {
+        float: middle; }
+        header nav a:before {
+          display: none; }
 
   aside, main {
     width: 100%; }
