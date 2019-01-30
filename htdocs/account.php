@@ -13,7 +13,6 @@ if(!$acc2edit)
 	header('HTTP/1.1 404 Account not found');
 	exit;
 }
-var_dump($_POST);
 function update_account($account, $post, $edit_proc)
 {
 	global $error;
@@ -101,7 +100,7 @@ if(!empty(@$_POST['submit']))
 			$acc2edit = account_selectid($acc2edit->accountid);
 		}
 	}
-	
+
 }
 
 include ('../run/header.php');
@@ -148,7 +147,7 @@ include ('../run/header.php');
 				<label >Email</label>
 	<input type="text" name="email" value="<?=$acc2edit->_data['email']?>" placeholder="Jsmih@example.com">
 			</p>
-			
+
 			<p class="usrin">
 				<label >Start Date</label>
 	<input type="date" name="startdate" value="<?=$acc2edit->_data['startdate']?>" placeholder="Start Date">

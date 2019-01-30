@@ -16,13 +16,12 @@ define('SGTS_UPLOADDEST' , $_SERVER['DOCUMENT_ROOT'] . '/../attachment_uploads')
 function uploadattachment(string $file_upload_name, string &$err_str = '')
 {
 	$tmpfile = @$_FILES[$file_upload_name];
-	print_r($_FILES);
 	if(!$tmpfile)
 	{
 		$err_str = 'No file upload attempted';
 		return 0;
 	}
-	
+
 	// Check to see if there was any errors with upload
 	switch($tmpfile['error'])
 	{
