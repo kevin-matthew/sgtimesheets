@@ -5,7 +5,7 @@ require_once 'lib/db.php';
 // download a given timesheet.
 function dl(int $id, account $account)
 {
-	$sql = "select timesheets.filelocation 
+	$sql = "select timesheets.filelocation
 , users.username
 , timesheets.fromdate
 , timesheets.enddate
@@ -48,7 +48,7 @@ where timesheets.timesheetid = $id
 		. ' to '
 		. $row['enddate']
 		. '.' . $ext;
-	
+
 	header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename="'.$fname.'"');
@@ -70,7 +70,7 @@ select concat(users.firstname, ' ', users.lastname) as fullname
 , timesheets.totalhours
 , timesheets.fromdate
 , timesheets.enddate
-, concat('<a href="?dl=', timesheets.timesheetid, '">Download File</a>') as link
+, concat('<a href="?dl=', timesheets.timesheetid, '" target="_blank">Download File</a>') as link
 from timesheets
 join users on timesheets.userid = users.userid
 EOF;

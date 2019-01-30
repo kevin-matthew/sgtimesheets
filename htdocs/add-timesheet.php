@@ -26,15 +26,15 @@ include 'run/header.php';
 		<form method="post" action="" enctype="multipart/form-data">
 			<p class='usrin'>
 		<label>Start Date</label>
-			<input name="fromdate" type="date" value="<?=$timesheetData['fromdate'];?>">
+			<input name="fromdate" type="date" value="<?=date('Y-m-d');?>">
 		</p>
 		<p class="usrin">
 			<label>End Date</label>
-			<input name="enddate" type="date" value="<?=$timesheetData['enddate']; ?>">
+			<input name="enddate" type="date" value="<?=date('Y-m-d'); ?>">
 		</p>
 		<p class="usrin">
 			<label>Total Hours</label>
-			<input name="totalhours" type="number" step="0.1" value="<?=$timesheetData['totalhours']; ?>">
+			<input name="totalhours" type="number" step="0.1" value="<?=0;?>">
 		</p>
 		<p class="usrin">
 			<label>Attachment</label>
