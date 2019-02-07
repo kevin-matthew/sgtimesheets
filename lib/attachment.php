@@ -5,7 +5,11 @@ define('SGTS_ALLOWEDTYPE', array('pdf' => 'application/pdf'
 , 'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 , 'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 , 'doc'  => 'application/msword'
-, 'bin' => 'application/octet-stream'));
+, 'bin' => 'application/octet-stream'
+, 'png' => 'image/png'
+, 'jpg' => 'image/jpeg'
+, 'jpeg'=> 'image/jpeg'
+, 'gif' => 'image/gif'));
 define('SGTS_UPLOADDEST' , $_SERVER['DOCUMENT_ROOT'] . '/../attachment_uploads');
 
 /*
