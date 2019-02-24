@@ -1,5 +1,6 @@
 config.m4
 nginx.conf
+makefile
 *.css.map
 attachment_uploads/*
 !attachment_uploads/dumy
