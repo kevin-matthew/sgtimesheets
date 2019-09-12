@@ -29,7 +29,7 @@ include ('../run/header.php');
 		<h2>Welcome to SG Timesheet Manager</h2>
 		<p>
 			Select one of the follow menus to begin exchanging
-			timesheets with SmartGeoTech.
+			timesheets.
 		</p>
 		<?php if($isadmin): ?>
 		<p>
