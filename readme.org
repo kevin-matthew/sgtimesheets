@@ -7,10 +7,10 @@ The company can then easily track and review them.
 
 
 * Authors
-  - Ellem Laboratories <https://www.ellem.ai/products/libreware.php>
+  - Ellem Laboratories [[https://www.ellem.ai/products/libreware.php]]
 
 * License 
 
 AGPLv3
 
-See [[file://./LICENSE]]
+See [[file:LICENSE]]
